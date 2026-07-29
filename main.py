@@ -28,8 +28,8 @@ def keep_alive():
 TELEGRAM_BOT_TOKEN = '8977777997:AAEvwcbsgOK0Gafij9rMx87_lQMeFUsI0C4'
 TELEGRAM_CHAT_ID = '1371553688'
 
-BINANCE_API_KEY = 'linLKfb5vlCVsrSwhY3GgUA9yR3jX8BeQlL5UqI3xDZeLqxo08wAx4st2aiVvrkS'
-BINANCE_SECRET_KEY = '4Pwys4qWhublkEPUmoDKmF5Tfh818ji1SR4wjuWnVh1SEGION4824tqZjuSR4Ep3'  # உங்களின் Secret Key-ஐ இங்கு போடவும்
+BINANCE_API_KEY = 'BINANCE_API_KE'
+BINANCE_SECRET_KEY = 'BINANCE_SECRET_KEY'  # உங்களின் Secret Key-ஐ இங்கு போடவும்
 
 # ==========================================
 # 3. TOP 50 FUTURES COINS LIST
