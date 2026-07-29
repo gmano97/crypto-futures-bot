@@ -163,4 +163,5 @@ def analyze_futures_market():
             print(f"Error {symbol}: {e}")
 
 if __name__ == "__main__":
+    send_telegram_msg("🤖 *Crypto Bot Active!* Scanning 150+ coins right now...")
     analyze_futures_market()
