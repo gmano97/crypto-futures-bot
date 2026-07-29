@@ -1,5 +1,5 @@
 ccxt
 pandas
-https://github.com/twopirllc/pandas-ta/archive/refs/heads/development.zip
+https://github.com/twopirllc/pandas-ta/archive/refs/heads/main.zip
 requests
 Flask
