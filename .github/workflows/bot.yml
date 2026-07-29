@@ -1,0 +1,28 @@
+name: Crypto Bot Auto Scan
+
+on:
+  schedule:
+    # 5 நிமிடங்களுக்கு ஒருமுறை தானாகவே ஓடும்
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Manual-ஆக இயக்கவும் வழி செய்யும்
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code-ஐ டவுன்லோட் செய்தல்
+        uses: actions/checkout@v4
+
+      - name: Python நிறுவுதல்
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Packages இன்ஸ்டால் செய்தல்
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Bot-ஐ இயக்குதல்
+        run: |
+          python main.py
