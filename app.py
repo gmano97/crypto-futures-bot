@@ -205,7 +205,7 @@ def start_monitor_thread():
 # ==========================================
 # 7. HEARTBEAT THREAD (Every 5 Minutes)
 # ==========================================
-HEARTBEAT_INTERVAL_MIN = 5  # <-- 5 நிமிடத்திற்கு ஒருமுறை மெசேஜ் வரும்படி மாற்றப்பட்டுள்ளது
+HEARTBEAT_INTERVAL_MIN = 5
 
 def heartbeat_loop():
     while True:
@@ -231,7 +231,7 @@ def get_all_futures_symbols(exchange) -> list[str]:
         markets = exchange.load_markets()
     except Exception as e:
         return []
-    return [s for s, m in markets.items() if m.get('active') and m.get('settle') == 'USDT' and m.get('type'] == 'swap' and m.get('linear')]
+    return [s for s, m in markets.items() if m.get('active') and m.get('settle') == 'USDT' and m.get('type') == 'swap' and m.get('linear')]
 
 TIMEFRAME = '1h'
 RECOMMENDED_LEVERAGE = "3x - 5x (Isolated)"
@@ -313,7 +313,7 @@ if __name__ == "__main__":
     send_telegram_msg("🤖 *Crypto Futures Bot v4.1 Started & Connected on Render! (OKX)*")
     print("Bot v4.1 is running...")
 
--    while True:
+    while True:
         try:
             analyze_futures_market()
             time.sleep(300)
