@@ -203,21 +203,20 @@ def start_monitor_thread():
     t.start()
 
 # ==========================================
-# 7. HEARTBEAT THREAD
+# 7. HEARTBEAT THREAD (Every 5 Minutes)
 # ==========================================
-HEARTBEAT_INTERVAL_MIN = 20
+HEARTBEAT_INTERVAL_MIN = 5  # <-- 5 நிமிடத்திற்கு ஒருமுறை மெசேஜ் வரும்படி மாற்றப்பட்டுள்ளது
 
 def heartbeat_loop():
-    time.sleep(HEARTBEAT_INTERVAL_MIN * 60)
     while True:
+        time.sleep(HEARTBEAT_INTERVAL_MIN * 60)
         try:
             now = datetime.utcnow().strftime('%H:%M UTC')
             with trades_lock:
                 active = len(open_trades)
-            send_telegram_msg(f"🟢 *Bot Active* | `{now}`\n📂 Monitoring {active} open trade(s).")
+            send_telegram_msg(f"🟢 *Bot Connected & Active* | `{now}`\n📂 Monitoring {active} open trade(s).")
         except Exception as e:
             print(f"Heartbeat error: {e}")
-        time.sleep(HEARTBEAT_INTERVAL_MIN * 60)
 
 def start_heartbeat_thread():
     t = Thread(target=heartbeat_loop)
@@ -232,7 +231,7 @@ def get_all_futures_symbols(exchange) -> list[str]:
         markets = exchange.load_markets()
     except Exception as e:
         return []
-    return [s for s, m in markets.items() if m.get('active') and m.get('settle') == 'USDT' and m.get('type') == 'swap' and m.get('linear')]
+    return [s for s, m in markets.items() if m.get('active') and m.get('settle') == 'USDT' and m.get('type'] == 'swap' and m.get('linear')]
 
 TIMEFRAME = '1h'
 RECOMMENDED_LEVERAGE = "3x - 5x (Isolated)"
@@ -311,10 +310,10 @@ if __name__ == "__main__":
     start_monitor_thread()
     start_heartbeat_thread()
 
-    send_telegram_msg("🤖 *Crypto Futures Bot v4.1 Started on Render! (OKX)*")
+    send_telegram_msg("🤖 *Crypto Futures Bot v4.1 Started & Connected on Render! (OKX)*")
     print("Bot v4.1 is running...")
 
-    while True:
+-    while True:
         try:
             analyze_futures_market()
             time.sleep(300)
